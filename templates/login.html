@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block import %}
+
+<link rel="import" href="{{url_for('static',filename='bower_components/core-input/core-input.html')}}">    
+<link rel="import" href="{{url_for('static',filename='bower_components/paper-input/paper-input.html')}}"> 
+<link rel="import" href="{{url_for('static',filename='bower_components/paper-submit/paper-submit.html')}}">
+
+ 
+<link rel="import" href="{{url_for('static',filename='bower_components/paper-input/paper-input-decorator.html')}}"> 
+
+{% endblock %}
+
+{% block content %}
+<form action="{{url_for('login')}}" method="post" name="login">
+    {% if form %}
+    {{form.hidden_tag()}}
+    {% endif %}
+
+
+ <table>
+        <tr>
+            <td>Open ID:</td>
+           <td>
+               <paper-input-decorator label='email'>
+                   <input name='email' is="core-input"/>
+               </paper-input-decorator>
+
+ {% if error %}
+ <div class='error_msg'><span style='color:red;'>*{{error}}</span></div>
+ {% endif %}
+           </td>
+       </tr>   
+       </table>
+       <paper-submit raised>submit</paper-submit> 
+            
+
+
+    
+{% endblock %}
